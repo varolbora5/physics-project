@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.list-style {
+  width: 85%;
+  margin: 1.75rem auto;
+}
