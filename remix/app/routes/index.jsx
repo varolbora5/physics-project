@@ -4,11 +4,11 @@ import { json } from "@remix-run/node";
 export default function Index() {
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
-      <header className="text-center border-b-2 text-xl font-bold p-6">
+      <header className="text-center border-minty-green border-b-2 text-xl font-bold p-6">
         <Link to="/">Fizik Laboratuvarı</Link>
       </header>
       <List />
-      <footer className="text-center border-t-2 text-xl font-bold p-6">
+      <footer className="text-center border-minty-green border-t-2 text-xl font-bold p-6">
         Bora Varol <br /> 12/C 286 <br />
         Fizik Projesi
       </footer>
@@ -17,11 +17,11 @@ export default function Index() {
 }
 
 const List = () => {
-  const data = useLoaderData()
+  const data = useLoaderData();
   return (
-    <div className="border-4 my-7 rounded-tl-xl rounded-br-xl border-dark-shade justify-center list-style">
+    <div className="border-4 my-7 rounded-tl-xl rounded-br-xl border-minty-green justify-center list-style">
       <ul>
-        {data.map((item) => (
+        {data.list.map((item) => (
           <ListItem key={item.id} title={item.title} dir={item.dir} />
         ))}
       </ul>
@@ -41,9 +41,17 @@ const ListItem = (props) => {
 
 export const loader = async () => {
   xc_auth_token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imd1ZXN0QGZpemlrcHJvamVzaS5icnVoIiwiZmlyc3RuYW1lIjpudWxsLCJsYXN0bmFtZSI6bnVsbCwiaWQiOjIsInJvbGVzIjoidXNlciIsImlhdCI6MTY0OTUwMzAwNn0.YnPc46WAk1TLKakf_9XyFbjf1EUnRiPzqgfwZNUSBdU";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imd1ZXN0dXNlckBib3JhdmFyb2wuY29tIiwiaWQiOiJ1c18xY2xsYmUzdnNxcmhieiIsInJvbGVzIjoidXNlciIsImlhdCI6MTY1MTQyMTY5N30.afdqqE-bZabaN0wze9DvYuQ07DOQ6dnxBnPVoPoF5Ho";
+  const a = await fetch(
+    "http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/directories/count",
+    {
+      method: "GET",
+      headers: { "xc-auth": xc_auth_token },
+    }
+  );
+  const count = await a.json().count;
   const res = await fetch(
-    "http://localhost:8080/nc/fizik_projesi_64ny/api/v1/directories",
+    `http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/directories?limit=${parseInt(count)}`,
     { method: "GET", headers: { "xc-auth": xc_auth_token } }
   );
   return json(await res.json());

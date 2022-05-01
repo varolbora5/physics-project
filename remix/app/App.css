@@ -476,6 +476,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin: 0.75rem;
 }
 
+.m-4 {
+  margin: 1rem;
+}
+
 .my-7 {
   margin-top: 1.75rem;
   margin-bottom: 1.75rem;
@@ -486,6 +490,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 0.5rem;
 }
 
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.mx-16 {
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -493,6 +507,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mb-7 {
   margin-bottom: 1.75rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.h-auto {
+  height: auto;
 }
 
 .list-inside {
@@ -515,6 +537,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   overflow-wrap: break-word;
 }
 
+.rounded-none {
+  border-radius: 0px;
+}
+
 .rounded-tl-xl {
   border-top-left-radius: 0.75rem;
 }
@@ -535,14 +561,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-top-width: 2px;
 }
 
-.border-dark-shade {
+.border-minty-green {
   --tw-border-opacity: 1;
-  border-color: rgb(30 30 36 / var(--tw-border-opacity));
+  border-color: rgb(11 232 129 / var(--tw-border-opacity));
 }
 
-.bg-grey-shade {
+.bg-black-shade {
   --tw-bg-opacity: 1;
-  background-color: rgb(241 241 241 / var(--tw-bg-opacity));
+  background-color: rgb(30 39 46 / var(--tw-bg-opacity));
 }
 
 .p-6 {
@@ -576,17 +602,32 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-weight: 700;
 }
 
-.text-dark-shade {
+.text-megaman {
   --tw-text-opacity: 1;
-  color: rgb(30 30 36 / var(--tw-text-opacity));
+  color: rgb(75 207 250 / var(--tw-text-opacity));
 }
 
-.text-main-brand {
+.text-minty-green {
   --tw-text-opacity: 1;
-  color: rgb(95 141 229 / var(--tw-text-opacity));
+  color: rgb(11 232 129 / var(--tw-text-opacity));
 }
 
 .list-style {
   width: 85%;
   margin: 1.75rem auto;
+}
+
+.image-style {
+  max-width: 40%;
+  max-height: 40%;
+  margin: 16px auto 0 auto;
+}
+
+.text-style {
+  width: 50%;
+}
+
+.body-style {
+  min-height: 100vh;
+  height: 100%;
 }

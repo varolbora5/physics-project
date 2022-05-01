@@ -6,3 +6,18 @@
   width: 85%;
   margin: 1.75rem auto;
 }
+
+.image-style {
+  max-width: 40%;
+  max-height: 40%;
+  margin: 16px auto 0 auto;
+}
+
+.text-style {
+  width: 50%;
+}
+
+.body-style {
+  min-height: 100vh;
+  height: 100%;
+}
