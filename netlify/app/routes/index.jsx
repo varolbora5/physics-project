@@ -22,7 +22,7 @@ const List = () => {
     <div className="border-4 my-7 rounded-tl-xl rounded-br-xl border-minty-green justify-center list-style">
       <ul>
         {data.list.map((item) => (
-          <ListItem key={item.id} title={item.title} dir={item.dir} />
+          <ListItem key={item.id} title={item.title} slug={item.slug} />
         ))}
       </ul>
     </div>
