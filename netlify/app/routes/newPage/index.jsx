@@ -32,7 +32,7 @@ export const action = async ({ request }) => {
     'updated_at': new Date().toISOString(),
     'dir': formData._fields.directory[0].toString(),
     'title': formData._fields.title[0].toString(),
-    'markdown': formData._fields.content[0].toString(),
+    'markdown': formData._fields.content[0].toString().trim(),
     'image': image.toString()
     // DONE: Add image encoding and uploading
   }
@@ -57,9 +57,9 @@ export default function NewForm() {
         <input className="bg-grey-shade p-3 m-3" type="text" name="directory" />
         <p>Title: </p>
         <input className="bg-grey-shade p-3 m-3" type="text" name="title" />
-        <Link to="https://www.markdownguide.org/cheat-sheet/">
+        {/* <Link to="https://www.markdownguide.org/cheat-sheet/"> */}
         <p className="underline">Text</p>
-        </Link>
+        {/* </Link> */}
         <textarea
           className="bg-grey-shade p-3 m-3"
           type="text"
