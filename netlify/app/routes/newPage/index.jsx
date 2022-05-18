@@ -28,12 +28,12 @@ export const action = async ({ request }) => {
   const image = _arrayBufferToBase64(buffer);
 
   const pageData = {
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-    slug: formData._fields.directory[0].toString(),
     title: formData._fields.title[0].toString(),
+    CreatedAt: new Date().toISOString(),
+    UpdatedAt: new Date().toISOString(),
     markdown: formData._fields.content[0].toString().trim(),
     image: image.toString(),
+    slug: formData._fields.directory[0].toString(),
     // DONE: Add image encoding and uploading
   };
   const page = fetch(
