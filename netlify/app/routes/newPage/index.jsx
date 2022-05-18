@@ -73,7 +73,6 @@ export default function NewForm() {
           Submit
         </button>
       </Form>
-      <Link to="https://www.markdownguide.org/cheat-sheet/">Markdown Guide</Link>
     </div>
   );
 }
