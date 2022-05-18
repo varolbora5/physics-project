@@ -13,16 +13,7 @@ export const action = async ({ request }) => {
     request,
     uploadHandler
   );
-  const res = await fetch(
-    `http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/pages?where=(dir%2Ceq%2C${formData._fields.directory[0]})`,
-    { method: "GET", headers: { "xc-auth": formData._fields.auth[0] } }
-  );
-  const aaa = await res.json();
-  if ((await aaa[0]) != undefined) {
-    throw new Response("Page already exists", {
-      status: 400,
-    });
-  }
+  
   const file = formData.get("image");
   const buffer = await file.arrayBuffer();
   const image = _arrayBufferToBase64(buffer);
