@@ -43,7 +43,7 @@ export const loader = async () => {
   xc_auth_token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imd1ZXN0dXNlckBib3JhdmFyb2wuY29tIiwiaWQiOiJ1c18xY2xsYmUzdnNxcmhieiIsInJvbGVzIjoidXNlciIsImlhdCI6MTY1MTQyMTY5N30.afdqqE-bZabaN0wze9DvYuQ07DOQ6dnxBnPVoPoF5Ho";
   const a = await fetch(
-    "http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/directories/count",
+    "http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/pages/count",
     {
       method: "GET",
       headers: { "xc-auth": xc_auth_token },
@@ -51,7 +51,7 @@ export const loader = async () => {
   );
   const count = await a.json().count;
   const res = await fetch(
-    `http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/directories?limit=${parseInt(count)}`,
+    `http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/pages?limit=${parseInt(count)}`,
     { method: "GET", headers: { "xc-auth": xc_auth_token } }
   );
   return json(await res.json());
