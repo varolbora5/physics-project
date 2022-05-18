@@ -48,7 +48,7 @@ export const Image = ({ base64_img, title }) => {
 export const Content = ({ text }) => {
   return (
     <div className="text-center">
-      <p className="text-xl m-4 break-words" dangerouslySetInnerHTML={text}></p>
+      <p className="text-xl m-4 break-words" dangerouslySetInnerHTML={{ __html: text}}></p>
     </div>
   );
 };
