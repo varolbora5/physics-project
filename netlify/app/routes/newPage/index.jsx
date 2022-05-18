@@ -13,7 +13,7 @@ export const action = async ({ request }) => {
     request,
     uploadHandler
   );
-  
+
   const file = formData.get("image");
   const buffer = await file.arrayBuffer();
   const image = _arrayBufferToBase64(buffer);
@@ -27,7 +27,7 @@ export const action = async ({ request }) => {
     slug: formData._fields.directory[0].toString(),
     // DONE: Add image encoding and uploading
   };
-  const page = fetch(
+  const page = await fetch(
     "http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/pages",
     {
       method: "POST",
@@ -39,7 +39,7 @@ export const action = async ({ request }) => {
       body: JSON.stringify(pageData),
     }
   );
-
+  console.log(await page.json());
   return redirect(`/pages/${formData._fields.directory[0]}`);
 };
 export default function NewForm() {
