@@ -33,7 +33,7 @@ const ListItem = (props) => {
   return (
     <>
       <li className="m-1 list-inside list-disc my-2 break-words">
-        <Link to={`/pages/${props.dir}`}>{props.title}</Link>
+        <Link to={`/pages/${props.slug}`}>{props.title}</Link>
       </li>
     </>
   );
