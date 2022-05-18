@@ -27,26 +27,12 @@ export const action = async ({ request }) => {
   const buffer = await file.arrayBuffer()
   const image = _arrayBufferToBase64(buffer)
   
-  const dirData = {
-    'title': formData._fields.title[0].toString(),
-    'created_at': new Date().toISOString(),
-    'updated_at': new Date().toISOString(),
-    'dir': formData._fields.directory[0].toString(),
-  }
-  const dir = fetch(
-    "http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/directories/views/directories",
-    {
-      method: "POST",
-      headers: { "xc-auth": formData._fields.auth[0].toString(), 'Content-Type': 'application/json', 'accept': 'application/json' },
-      body: JSON.stringify(dirData),
-    }
-  );
   const pageData = {
     'created_at': new Date().toISOString(),
     'updated_at': new Date().toISOString(),
     'dir': formData._fields.directory[0].toString(),
     'title': formData._fields.title[0].toString(),
-    'content': formData._fields.content[0].toString(),
+    'markdown': formData._fields.content[0].toString(),
     'image': image.toString()
     // DONE: Add image encoding and uploading
   }
@@ -71,7 +57,9 @@ export default function NewForm() {
         <input className="bg-grey-shade p-3 m-3" type="text" name="directory" />
         <p>Title: </p>
         <input className="bg-grey-shade p-3 m-3" type="text" name="title" />
-        <p>Text</p>
+        <Link to="https://www.markdownguide.org/cheat-sheet/">
+        <p className="underline">Text</p>
+        </Link>
         <textarea
           className="bg-grey-shade p-3 m-3"
           type="text"

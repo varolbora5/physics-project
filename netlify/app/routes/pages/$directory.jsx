@@ -1,3 +1,4 @@
+import { marked } from "marked";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
@@ -31,7 +32,7 @@ export const Page = () => {
     <div className="items-center text-center border-minty-green border-4 rounded-tl-xl rounded-br-xl my-6 mx-16 h-auto">
       <Image base64_img={data[0].image} title={data[0].title} />
       <Title title={data[0].title} />
-      <Content text={data[0].content} />
+      <Content text={marked(data[0].markdown)} />
     </div>
   );
 };
@@ -47,7 +48,7 @@ export const Image = ({ base64_img, title }) => {
 export const Content = ({ text }) => {
   return (
     <div className="text-center">
-      <p className="text-xl m-4 break-words">{text}</p>
+      <p className="text-xl m-4 break-words" dangerouslySetInnerHTML={text}></p>
     </div>
   );
 };
