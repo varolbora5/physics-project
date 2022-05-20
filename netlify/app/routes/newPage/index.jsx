@@ -7,7 +7,7 @@ import { Form } from "@remix-run/react";
 
 export const action = async ({ request }) => {
   const uploadHandler = unstable_createMemoryUploadHandler({
-    maxFileSize: 5_000_000,
+    maxFileSize: 5000000000,
   });
   const formData = await unstable_parseMultipartFormData(
     request,

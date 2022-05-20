@@ -7,58 +7,48 @@ import { Form } from "@remix-run/react";
 
 export const action = async ({ request }) => {
   const uploadHandler = unstable_createMemoryUploadHandler({
-    maxFileSize: 5_000_000,
+    maxFileSize: 5000000,
   });
   const formData = await unstable_parseMultipartFormData(
     request,
     uploadHandler
   );
   const res = await fetch(
-    `http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/pages?where=(dir%2Ceq%2C${formData._fields.directory[0]})`,
+    `http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/pages?where=(slug%2Ceq%2C${formData._fields.directory[0]})`,
     { method: "GET", headers: { "xc-auth": formData._fields.auth[0] } }
-  )
-  const aaa = await res.json()
+  );
+  const aaa = await res.json();
   if ((await aaa[0]) != undefined) {
     throw new Response("Page already exists", {
       status: 400,
     });
   }
-  const file = formData.get("image")
-  const buffer = await file.arrayBuffer()
-  const image = _arrayBufferToBase64(buffer)
-  
-  const dirData = {
-    'title': formData._fields.title[0].toString(),
-    'created_at': new Date().toISOString(),
-    'updated_at': new Date().toISOString(),
-    'dir': formData._fields.directory[0].toString(),
-  }
-  const dir = fetch(
-    "http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/directories/views/directories",
-    {
-      method: "POST",
-      headers: { "xc-auth": formData._fields.auth[0].toString(), 'Content-Type': 'application/json', 'accept': 'application/json' },
-      body: JSON.stringify(dirData),
-    }
-  );
+  const file = formData.get("image");
+  const buffer = await file.arrayBuffer();
+  const image = _arrayBufferToBase64(buffer);
+
   const pageData = {
-    'created_at': new Date().toISOString(),
-    'updated_at': new Date().toISOString(),
-    'dir': formData._fields.directory[0].toString(),
-    'title': formData._fields.title[0].toString(),
-    'content': formData._fields.content[0].toString(),
-    'image': image.toString()
+    // 'created_at': new Date().toISOString(),
+    // 'updated_at': new Date().toISOString(),
+    slug: formData._fields.directory[0].toString(),
+    title: formData._fields.title[0].toString(),
+    markdown: formData._fields.content[0].toString(),
+    image: image.toString(),
     // DONE: Add image encoding and uploading
-  }
-  const page = fetch(
+  };
+  const page = await fetch(
     "http://pure-emu.herokuapp.com/api/v1/db/data/noco/fizik_projesi/pages/views/pages",
     {
       method: "POST",
-      headers: { "xc-auth": formData._fields.auth[0].toString(), 'Content-Type': 'application/json', 'accept': 'application/json' },
+      headers: {
+        "xc-auth": formData._fields.auth[0].toString(),
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
       body: JSON.stringify(pageData),
     }
-    );
-
+  );
+    console.log(await page.json());
   return redirect(`/pages/${formData._fields.directory[0]}`);
 };
 export default function NewForm() {
@@ -87,14 +77,13 @@ export default function NewForm() {
   );
 }
 
-function _arrayBufferToBase64( buffer ) {
-  var binary = '';
-  var bytes = new Uint8Array( buffer );
+function _arrayBufferToBase64(buffer) {
+  var binary = "";
+  var bytes = new Uint8Array(buffer);
   var len = bytes.byteLength;
   for (var i = 0; i < len; i++) {
-      binary += String.fromCharCode( bytes[ i ] );
+    binary += String.fromCharCode(bytes[i]);
   }
-  return global.btoa( binary );
-//! btoa deprecated
+  return global.btoa(binary);
+  //! btoa deprecated
 }
-
