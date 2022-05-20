@@ -20,8 +20,8 @@ export const action = async ({ request }) => {
 
   const pageData = {
     title: formData._fields.title[0].toString(),
-    CreatedAt: new Date().toISOString(),
-    UpdatedAt: new Date().toISOString(),
+    // CreatedAt: new Date().toISOString(),
+    // UpdatedAt: new Date().toISOString(),
     markdown: formData._fields.content[0].toString().trim(),
     image: image.toString(),
     slug: formData._fields.directory[0].toString(),
