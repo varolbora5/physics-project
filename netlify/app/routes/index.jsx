@@ -32,7 +32,7 @@ const List = () => {
 const ListItem = (props) => {
   return (
     <>
-      <li className="m-1 text-xxl list-inside list-disc my-4 break-words">
+      <li className="m-1 text-xl list-inside list-disc my-4 break-words">
         <Link to={`/pages/${props.slug}`}>{props.title}</Link>
       </li>
     </>
